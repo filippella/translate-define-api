@@ -35,13 +35,13 @@ public class DefinitionServiceImpl implements DefinitionService {
     }
 
     @Override
-    public void define(int position, DefinitionRequest request, final Callback callback) {
+    public void define(int position, final DefinitionRequest definitionRequest, final Callback callback) {
         WordDefinitionApi definitionApi = this.api.getWordDefinitionApi();
         Call<Definition[]> call = definitionApi.getDefinition(
-                request.getPhrase(),
-                request.getLimit(),
-                request.isUseCanonical(),
-                request.getApiKey()
+                definitionRequest.getPhrase(),
+                definitionRequest.getLimit(),
+                definitionRequest.isUseCanonical(),
+                definitionRequest.getApiKey()
         );
         call.enqueue(new retrofit2.Callback<Definition[]>() {
 
@@ -52,7 +52,7 @@ public class DefinitionServiceImpl implements DefinitionService {
                 System.out.println(url);
 
                 Definition[] response = rspns.body();
-                callback.onDefined(response);
+                callback.onDefined(definitionRequest.getPhrase(), response);
             }
 
             @Override

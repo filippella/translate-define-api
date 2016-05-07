@@ -21,7 +21,7 @@ package org.dalol.definition.api.model;
  */
 public interface Callback {
     
-    void onDefined(Definition[] response);
+    void onDefined(String word, Definition[] response);
 
     void onError(String error);
 }
