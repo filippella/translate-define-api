@@ -5,6 +5,8 @@ This project is a sample for a complete dictionar, translation java program, It 
  * Translate any word, phrase or sentence to any language.
  * Define any word
 
+Translation Demo
+
 ```java
 
 public class TranslateTest {
@@ -31,6 +33,40 @@ public class TranslateTest {
             @Override
             public void onTranslated(TranslateResponse response) {
                 System.out.println(response.getWord());
+            }
+        });
+    }
+}
+```
+
+Definition Demo
+
+```java
+
+public class DefinitionTest {
+
+    public static void main(String[] args) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://www.wordsapi.com")
+                .build();
+
+        DefinitionApi api = new DefinitionApiImpl(retrofit);
+
+        DefinitionService service = new DefinitionServiceImpl(api);
+        service.define(0, "water", new Callback() {
+
+            @Override
+            public void onDefined(DefinitionResponse response) {
+                System.out.println(response);
+                System.exit(0);
+            }
+
+            @Override
+            public void onError(String error) {
+                System.err.println(error + " error");
+                System.exit(0);
             }
         });
     }
