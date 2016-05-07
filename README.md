@@ -62,10 +62,10 @@ public class DefinitionDemo {
         service.define(0, request, new Callback() {
 
             @Override
-            public void onDefined(Definition[] response) {
+            public void onDefined(String word, Definition[] response) {
                 
                 System.out.println("----------------------------------------------------------------------");
-                System.out.println("LIST OF WORD DEFINITION FOR -> " + response[0].getWord());
+                System.out.println("LIST OF WORD DEFINITION FOR -> " + word);
                 System.out.println("----------------------------------------------------------------------");
                 
                 for (Definition definition : response) {
