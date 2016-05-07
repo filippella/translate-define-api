@@ -19,20 +19,29 @@ package org.dalol.definition.api.model;
  *
  * @author Filippo-TheAppExpert
  */
-public class DefinitionResponse {
+public class Definitions {
 
-    private Definitions[] definitions;
+    private String definition;
+    private String partOfSpeech;
 
-    public Definitions[] getDefinitions() {
-        return definitions;
+    public String getDefinition() {
+        return definition;
     }
 
-    public void setDefinitions(Definitions[] definitions) {
-        this.definitions = definitions;
+    public void setDefinition(String definition) {
+        this.definition = definition;
+    }
+
+    public String getPartOfSpeech() {
+        return partOfSpeech;
+    }
+
+    public void setPartOfSpeech(String partOfSpeech) {
+        this.partOfSpeech = partOfSpeech;
     }
 
     @Override
     public String toString() {
-        return "DefinitionResponse [definitions = " + definitions + "]";
+        return "Definitions [definition = " + definition + ", partOfSpeech = " + partOfSpeech + "]";
     }
 }

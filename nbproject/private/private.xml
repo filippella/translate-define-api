@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/signature/WebConnection.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/helper/DalolException.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/model/Callback.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/model/Method.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/utilities/TranslateUtil.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/globse/GlosbeTranslateService.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/signature/TranslateApi.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/google/GoogleTranslateService.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/model/Word.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/model/LanguageSet.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/model/ConnectionListener.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/model/TranslateResponse.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/definition/api/model/DefinitionResponse.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/test/TranslateTest.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/core/GoogleHTTPConnection.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/model/TranslateRequest.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/definition/api/model/Callback.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/model/Definition.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/core/TranslateApiImpl.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/model/ConnectionType.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/translate/api/signature/TranslateService.java</file>
+            <file>file:/C:/Users/Filippo-TheAppExpert/Documents/NetBeansProjects/translate-api/src/org/dalol/definition/api/signature/DefinitionService.java</file>
+        </group>
+    </open-files>
+</project-private>

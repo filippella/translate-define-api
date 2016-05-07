@@ -13,26 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dalol.definition.api.model;
+package org.dalol.definition.api.signature;
 
-/**
- *
- * @author Filippo-TheAppExpert
- */
-public class DefinitionResponse {
+import retrofit2.Retrofit;
 
-    private Definitions[] definitions;
 
-    public Definitions[] getDefinitions() {
-        return definitions;
+public class DefinitionApiImpl implements DefinitionApi {
+    
+    private final Retrofit retrofit;
+
+    public DefinitionApiImpl(Retrofit retrofit) {
+        this.retrofit = retrofit;
     }
-
-    public void setDefinitions(Definitions[] definitions) {
-        this.definitions = definitions;
-    }
-
+    
     @Override
-    public String toString() {
-        return "DefinitionResponse [definitions = " + definitions + "]";
+    public WordDefinitionApi getWordDefinitionApi() {
+        return this.retrofit.create(WordDefinitionApi.class);
     }
 }
