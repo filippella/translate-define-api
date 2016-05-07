@@ -13,50 +13,52 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dalol.definition.api.core;
+package org.dalol.pronounciation.api.core;
 
+import java.util.List;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
-import org.dalol.definition.api.model.Callback;
-import org.dalol.definition.api.model.Definition;
-import org.dalol.definition.api.model.DefinitionRequest;
 import org.dalol.definition.api.signature.WordRestApi;
-import org.dalol.definition.api.signature.DefinitionService;
-import org.dalol.definition.api.signature.WordDefinitionApi;
+import org.dalol.pronounciation.api.model.Callback;
+import org.dalol.pronounciation.api.model.Pronounciation;
+import org.dalol.pronounciation.api.model.PronounciationRequest;
+import org.dalol.pronounciation.api.signature.PronounciationService;
+import org.dalol.pronounciation.api.signature.WordPronountiationApi;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class DefinitionServiceImpl implements DefinitionService {
+
+public class PronounciationServiceImpl implements PronounciationService {
 
     private final WordRestApi api;
 
-    public DefinitionServiceImpl(WordRestApi api) {
+    public PronounciationServiceImpl(WordRestApi api) {
         this.api = api;
     }
-
+    
     @Override
-    public void define(int position, DefinitionRequest request, final Callback callback) {
-        WordDefinitionApi definitionApi = this.api.getWordDefinitionApi();
-        Call<Definition[]> call = definitionApi.getDefinition(
+    public void getPronounciation(PronounciationRequest request, Callback callback) {
+        WordPronountiationApi pronountiationApi = this.api.getWordPronountiationApi();
+        Call<List<Pronounciation>> call = pronountiationApi.getPronounciation(
                 request.getPhrase(),
                 request.getLimit(),
                 request.isUseCanonical(),
                 request.getApiKey()
         );
-        call.enqueue(new retrofit2.Callback<Definition[]>() {
+        call.enqueue(new retrofit2.Callback<List<Pronounciation>>() {
 
             @Override
-            public void onResponse(Call<Definition[]> call, Response<Definition[]> rspns) {
+            public void onResponse(Call<List<Pronounciation>> call, Response<List<Pronounciation>> rspns) {
                 Request request = call.request();
                 HttpUrl url = request.url();
                 System.out.println(url);
 
-                Definition[] response = rspns.body();
-                callback.onDefined(response);
+                List<Pronounciation> response = rspns.body();
+                callback.onPronountiation(response);
             }
 
             @Override
-            public void onFailure(Call<Definition[]> call, Throwable thrwbl) {
+            public void onFailure(Call<List<Pronounciation>> call, Throwable thrwbl) {
                 Request request = call.request();
                 HttpUrl url = request.url();
                 System.out.println(url);

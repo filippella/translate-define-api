@@ -15,11 +15,25 @@
  */
 package org.dalol.definition.api.signature;
 
-/**
- *
- * @author Filippo-TheAppExpert
- */
-public interface DefinitionApi {
+import org.dalol.pronounciation.api.signature.WordPronountiationApi;
+import retrofit2.Retrofit;
+
+
+public class WordRestApiImpl implements WordRestApi {
     
-    WordDefinitionApi getWordDefinitionApi();
+    private final Retrofit retrofit;
+
+    public WordRestApiImpl(Retrofit retrofit) {
+        this.retrofit = retrofit;
+    }
+    
+    @Override
+    public WordDefinitionApi getWordDefinitionApi() {
+        return this.retrofit.create(WordDefinitionApi.class);
+    }
+
+    @Override
+    public WordPronountiationApi getWordPronountiationApi() {
+        return this.retrofit.create(WordPronountiationApi.class);
+    }
 }

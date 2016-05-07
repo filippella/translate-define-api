@@ -15,10 +15,9 @@
  */
 package org.dalol.definition.api.signature;
 
-import org.dalol.definition.api.model.DefinitionResponse;
+import org.dalol.definition.api.model.Definition;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -28,19 +27,11 @@ import retrofit2.http.Query;
  */
 public interface WordDefinitionApi {
 
-    @Headers({
-        "Host: www.wordsapi.com",
-        "Connection: keep-alive",
-        "Accept: application/json, text/javascript, */*; q=0.01",
-        "X-Requested-With: XMLHttpRequest",
-        "User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36",
-        "Referer: https://www.wordsapi.com/",
-        "Accept-Encoding: gzip, deflate, sdch",
-        "Accept-Language: en-US,en;q=0.8",
-        "Cookie: __cfduid=d8be99af6a6a59c4eddc16cd0a3fd1d621462618206;",
-        "connect.sid: s%3AftjVCQ_C7Md2wZfM1RfreDRI91upTySi.MFzerBJk6HWGRE36mfym624Qe2mJCE7Qcy9j4i%2BXWFU;",
-        "_ga: GA1.2.2142621747.1462618207"}
-    )
-    @GET("/words/{word}/definitions")
-    Call<DefinitionResponse> getDefinition(@Path("word") String word, @Query("when") String when, @Query("encrypted") String encrypted);
+    @GET("/v4/word.json/{word}/definitions")
+    Call<Definition[]> getDefinition(
+            @Path("word") String word,
+            @Query("limit") int limit,
+            @Query("useCanonical") boolean useCanonical,
+            @Query("api_key") String api_key
+    );
 }

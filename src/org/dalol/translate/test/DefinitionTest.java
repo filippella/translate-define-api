@@ -15,14 +15,10 @@
  */
 package org.dalol.translate.test;
 
-import org.dalol.definition.api.core.DefinitionServiceImpl;
-import org.dalol.definition.api.model.Callback;
-import org.dalol.definition.api.model.DefinitionResponse;
-import org.dalol.definition.api.signature.DefinitionApi;
-import org.dalol.definition.api.signature.DefinitionApiImpl;
-import org.dalol.definition.api.signature.DefinitionService;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.List;
+import org.dalol.definition.api.model.Definition;
 
 /**
  *
@@ -30,29 +26,132 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class DefinitionTest {
 
+    private String j = "[\n"
+            + "    {\n"
+            + "        \"textProns\": [],\n"
+            + "        \"sourceDictionary\": \"ahd-legacy\",\n"
+            + "        \"exampleUses\": [],\n"
+            + "        \"relatedWords\": [],\n"
+            + "        \"labels\": [],\n"
+            + "        \"citations\": [],\n"
+            + "        \"word\": \"car\",\n"
+            + "        \"partOfSpeech\": \"noun\",\n"
+            + "        \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\",\n"
+            + "        \"sequence\": \"0\",\n"
+            + "        \"text\": \"An automobile.\",\n"
+            + "        \"score\": 0\n"
+            + "    },\n"
+            + "    {\n"
+            + "        \"textProns\": [],\n"
+            + "        \"sourceDictionary\": \"ahd-legacy\",\n"
+            + "        \"exampleUses\": [],\n"
+            + "        \"relatedWords\": [],\n"
+            + "        \"labels\": [],\n"
+            + "        \"citations\": [],\n"
+            + "        \"word\": \"car\",\n"
+            + "        \"partOfSpeech\": \"noun\",\n"
+            + "        \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\",\n"
+            + "        \"sequence\": \"1\",\n"
+            + "        \"text\": \"A vehicle, such as a streetcar, that runs on rails:  a railroad car. \",\n"
+            + "        \"score\": 0\n"
+            + "    },\n"
+            + "    {\n"
+            + "        \"textProns\": [],\n"
+            + "        \"sourceDictionary\": \"ahd-legacy\",\n"
+            + "        \"exampleUses\": [],\n"
+            + "        \"relatedWords\": [],\n"
+            + "        \"labels\": [],\n"
+            + "        \"citations\": [],\n"
+            + "        \"word\": \"car\",\n"
+            + "        \"partOfSpeech\": \"noun\",\n"
+            + "        \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\",\n"
+            + "        \"sequence\": \"2\",\n"
+            + "        \"text\": \"A boxlike enclosure for passengers and freight on a conveyance:  an elevator car. \",\n"
+            + "        \"score\": 0\n"
+            + "    }\n"
+            + "]";
+
+    private String json = "[\n"
+            + "    {\n"
+            + "        \"textProns\": [],\n"
+            + "        \"sourceDictionary\": \"ahd-legacy\",\n"
+            + "        \"exampleUses\": [],\n"
+            + "        \"relatedWords\": [],\n"
+            + "        \"labels\": [],\n"
+            + "        \"citations\": [],\n"
+            + "        \"word\": \"play\",\n"
+            + "        \"partOfSpeech\": \"verb-intransitive\",\n"
+            + "        \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\",\n"
+            + "        \"sequence\": \"0\",\n"
+            + "        \"text\": \"To occupy oneself in amusement, sport, or other recreation:  children playing with toys. \",\n"
+            + "        \"score\": 0\n"
+            + "    },\n"
+            + "    {\n"
+            + "        \"textProns\": [],\n"
+            + "        \"sourceDictionary\": \"ahd-legacy\",\n"
+            + "        \"exampleUses\": [],\n"
+            + "        \"relatedWords\": [],\n"
+            + "        \"labels\": [],\n"
+            + "        \"citations\": [],\n"
+            + "        \"word\": \"play\",\n"
+            + "        \"partOfSpeech\": \"verb-intransitive\",\n"
+            + "        \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\",\n"
+            + "        \"sequence\": \"1\",\n"
+            + "        \"text\": \"To take part in a game:  No minors are eligible to play. \",\n"
+            + "        \"score\": 0\n"
+            + "    },\n"
+            + "    {\n"
+            + "        \"textProns\": [],\n"
+            + "        \"sourceDictionary\": \"ahd-legacy\",\n"
+            + "        \"exampleUses\": [],\n"
+            + "        \"relatedWords\": [],\n"
+            + "        \"labels\": [],\n"
+            + "        \"citations\": [],\n"
+            + "        \"word\": \"play\",\n"
+            + "        \"partOfSpeech\": \"verb-intransitive\",\n"
+            + "        \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\",\n"
+            + "        \"sequence\": \"2\",\n"
+            + "        \"text\": \"To participate in betting; gamble.\",\n"
+            + "        \"score\": 0\n"
+            + "    },\n"
+            + "    {\n"
+            + "        \"textProns\": [],\n"
+            + "        \"sourceDictionary\": \"ahd-legacy\",\n"
+            + "        \"exampleUses\": [],\n"
+            + "        \"relatedWords\": [],\n"
+            + "        \"labels\": [],\n"
+            + "        \"citations\": [],\n"
+            + "        \"word\": \"play\",\n"
+            + "        \"partOfSpeech\": \"verb-intransitive\",\n"
+            + "        \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\",\n"
+            + "        \"sequence\": \"3\",\n"
+            + "        \"text\": \"To act in jest or sport:  They're not arguing in earnest, they're just playing. \",\n"
+            + "        \"score\": 0\n"
+            + "    },\n"
+            + "    {\n"
+            + "        \"textProns\": [],\n"
+            + "        \"sourceDictionary\": \"ahd-legacy\",\n"
+            + "        \"exampleUses\": [],\n"
+            + "        \"relatedWords\": [],\n"
+            + "        \"labels\": [],\n"
+            + "        \"citations\": [],\n"
+            + "        \"word\": \"play\",\n"
+            + "        \"partOfSpeech\": \"verb-intransitive\",\n"
+            + "        \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\",\n"
+            + "        \"sequence\": \"4\",\n"
+            + "        \"text\": \"To deal or behave carelessly or indifferently; toy. See Synonyms at flirt.\",\n"
+            + "        \"score\": 0\n"
+            + "    }\n"
+            + "]";
+
+    public List<Definition> bindJson() {
+        Gson gson = new Gson();
+        return gson.fromJson(j, ArrayList.class);
+    }
+
     public static void main(String[] args) {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://www.wordsapi.com")
-                .build();
-
-        DefinitionApi api = new DefinitionApiImpl(retrofit);
-
-        DefinitionService service = new DefinitionServiceImpl(api);
-        service.define(0, "water", new Callback() {
-
-            @Override
-            public void onDefined(DefinitionResponse response) {
-                System.out.println(response);
-                System.exit(0);
-            }
-
-            @Override
-            public void onError(String error) {
-                System.err.println(error + " error");
-                System.exit(0);
-            }
-        });
+        DefinitionTest test = new DefinitionTest();
+        List<Definition> definitionList = test.bindJson();
+        System.out.println(definitionList.size());
     }
 }

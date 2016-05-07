@@ -13,26 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dalol.definition.api.model;
+package org.dalol.pronounciation.api.model;
+
+import java.util.List;
 
 /**
  *
  * @author Filippo-TheAppExpert
  */
-public class DefinitionResponse {
+public interface Callback {
+    
+    void onPronountiation(List<Pronounciation> response);
 
-    private Definitions[] definitions;
-
-    public Definitions[] getDefinitions() {
-        return definitions;
-    }
-
-    public void setDefinitions(Definitions[] definitions) {
-        this.definitions = definitions;
-    }
-
-    @Override
-    public String toString() {
-        return "DefinitionResponse [definitions = " + definitions + "]";
-    }
+    void onError(String error);
 }

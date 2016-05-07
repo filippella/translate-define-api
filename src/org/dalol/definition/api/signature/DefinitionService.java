@@ -16,6 +16,7 @@
 package org.dalol.definition.api.signature;
 
 import org.dalol.definition.api.model.Callback;
+import org.dalol.definition.api.model.DefinitionRequest;
 
 
 /**
@@ -24,5 +25,5 @@ import org.dalol.definition.api.model.Callback;
  */
 public interface DefinitionService {
     
-    void define(int position, String originalPhrase, Callback callback);
+    void define(int position, DefinitionRequest request, Callback callback);
 }

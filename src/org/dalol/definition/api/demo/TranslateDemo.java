@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dalol.translate.test;
+package org.dalol.definition.api.demo;
 
 import org.dalol.translate.api.model.Callback;
 import org.dalol.translate.api.core.GoogleHTTPConnection;
@@ -30,7 +30,7 @@ import org.dalol.translate.api.signature.WebConnection;
  *
  * @author Filippo-TheAppExpert
  */
-public class TranslateTest {
+public class TranslateDemo {
 
     /**
      * @param args the command line arguments

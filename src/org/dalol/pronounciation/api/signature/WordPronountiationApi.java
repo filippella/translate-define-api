@@ -13,35 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dalol.definition.api.model;
+package org.dalol.pronounciation.api.signature;
+
+import java.util.List;
+import org.dalol.pronounciation.api.model.Pronounciation;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  *
  * @author Filippo-TheAppExpert
  */
-public class Definitions {
-
-    private String definition;
-    private String partOfSpeech;
-
-    public String getDefinition() {
-        return definition;
-    }
-
-    public void setDefinition(String definition) {
-        this.definition = definition;
-    }
-
-    public String getPartOfSpeech() {
-        return partOfSpeech;
-    }
-
-    public void setPartOfSpeech(String partOfSpeech) {
-        this.partOfSpeech = partOfSpeech;
-    }
-
-    @Override
-    public String toString() {
-        return "Definitions [definition = " + definition + ", partOfSpeech = " + partOfSpeech + "]";
-    }
+public interface WordPronountiationApi {
+    
+    @GET("/v4/word.json/{word}/pronunciations")
+    Call<List<Pronounciation>> getPronounciation(
+            @Path("word") String word,
+            @Query("limit") int limit,
+            @Query("useCanonical") boolean useCanonical,
+            @Query("api_key") String api_key
+    );
 }

@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dalol.definition.api.model;
+package org.dalol.pronounciation.api.signature;
+
+import org.dalol.pronounciation.api.model.Callback;
+import org.dalol.pronounciation.api.model.PronounciationRequest;
 
 /**
  *
  * @author Filippo-TheAppExpert
  */
-public interface Callback {
+public interface PronounciationService {
     
-    void onDefined(Definition[] response);
-
-    void onError(String error);
+    void getPronounciation(PronounciationRequest request, Callback callback);
 }

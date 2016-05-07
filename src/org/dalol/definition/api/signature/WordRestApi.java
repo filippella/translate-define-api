@@ -15,19 +15,15 @@
  */
 package org.dalol.definition.api.signature;
 
-import retrofit2.Retrofit;
+import org.dalol.pronounciation.api.signature.WordPronountiationApi;
 
-
-public class DefinitionApiImpl implements DefinitionApi {
+/**
+ *
+ * @author Filippo-TheAppExpert
+ */
+public interface WordRestApi {
     
-    private final Retrofit retrofit;
-
-    public DefinitionApiImpl(Retrofit retrofit) {
-        this.retrofit = retrofit;
-    }
+    WordDefinitionApi getWordDefinitionApi();
     
-    @Override
-    public WordDefinitionApi getWordDefinitionApi() {
-        return this.retrofit.create(WordDefinitionApi.class);
-    }
+    WordPronountiationApi getWordPronountiationApi();
 }
