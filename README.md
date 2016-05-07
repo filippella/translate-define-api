@@ -9,20 +9,17 @@ Translation Demo
 
 ```java
 
-public class TranslateTest {
+public class TranslateDemo {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        
+
         TranslateRequest request = new TranslateRequest(
                 LanguageSet.GOOGLE.getAuto(),
                 LanguageSet.GOOGLE.getItalian(),
                 "My name is Filippo - I am a senior programmer");
-        
+
         WebConnection connection = new GoogleHTTPConnection(request);
-        TranslateService translateService = new GoogleTranslateService(connection);        
+        TranslateService translateService = new GoogleTranslateService(connection);
         TranslateApi api = new TranslateApiImpl(translateService);
         api.translate(0, new Callback() {
             @Override
@@ -37,40 +34,100 @@ public class TranslateTest {
         });
     }
 }
+
 ```
 
 Definition Demo
 
 ```java
 
-public class DefinitionTest {
+public class DefinitionDemo {
+
+    private final static String API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
 
     public static void main(String[] args) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://www.wordsapi.com")
+                .baseUrl("http://api.wordnik.com")
                 .build();
 
-        DefinitionApi api = new DefinitionApiImpl(retrofit);
-
+        WordRestApi api = new WordRestApiImpl(retrofit);
         DefinitionService service = new DefinitionServiceImpl(api);
-        service.define(0, "water", new Callback() {
+
+        DefinitionRequest request = new DefinitionRequest(false, API_KEY);
+        request.setLimit(50);
+        request.setPhrase("Ethiopia");
+
+        service.define(0, request, new Callback() {
 
             @Override
-            public void onDefined(DefinitionResponse response) {
-                System.out.println(response);
+            public void onDefined(Definition[] response) {
+                
+                System.out.println("----------------------------------------------------------------------");
+                System.out.println("LIST OF WORD DEFINITION FOR -> " + response[0].getWord());
+                System.out.println("----------------------------------------------------------------------");
+                
+                for (Definition definition : response) {
+                    System.out.println(definition.getWord() + " - (" + definition.getPartOfSpeech() + ") * " + definition.getText());
+                }
                 System.exit(0);
             }
 
             @Override
             public void onError(String error) {
-                System.err.println(error + " error");
+                System.err.println(error);
                 System.exit(0);
             }
         });
     }
 }
+
+```
+Pronountiation Demo
+
+```java
+public class PronountiationDemo {
+
+    private final static String API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
+
+    public static void main(String[] args) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("http://api.wordnik.com")
+                .build();
+
+        WordRestApi api = new WordRestApiImpl(retrofit);
+        PronounciationService service = new PronounciationServiceImpl(api);
+
+        PronounciationRequest request = new PronounciationRequest(false, API_KEY);
+        request.setLimit(50);
+        request.setPhrase("Ethiopia");
+
+        service.getPronounciation(request, new Callback() {
+
+            @Override
+            public void onPronountiation(List<Pronounciation> response) {
+                System.out.println("----------------------------------------------------------------------");
+                System.out.println("LIST OF WORD PRONOUNCIATION FOR -> " + response.get(0).getRawType());
+                System.out.println("----------------------------------------------------------------------");
+
+                for (Pronounciation pronounciation : response) {
+                    System.out.println(pronounciation.getRaw() + " - (" + pronounciation.getSeq() + ") * " + pronounciation.getRawType());
+                }
+                System.exit(0);
+            }
+
+            @Override
+            public void onError(String error) {
+                System.err.println(error);
+                System.exit(0);
+            }
+        });
+    }
+}
+
 ```
 
 License
