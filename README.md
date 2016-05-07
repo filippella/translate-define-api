@@ -6,21 +6,7 @@ This project is a sample for a complete dictionar, translation java program, It 
  * Define any word
 
 ```java
-import org.dalol.translate.api.model.Callback;
-import org.dalol.translate.api.core.GoogleHTTPConnection;
-import org.dalol.translate.api.google.GoogleTranslateService;
-import org.dalol.translate.api.model.LanguageSet;
-import org.dalol.translate.api.signature.TranslateApi;
-import org.dalol.translate.api.core.TranslateApiImpl;
-import org.dalol.translate.api.model.TranslateRequest;
-import org.dalol.translate.api.model.TranslateResponse;
-import org.dalol.translate.api.signature.TranslateService;
-import org.dalol.translate.api.signature.WebConnection;
 
-/**
- *
- * @author Filippo-TheAppExpert
- */
 public class TranslateTest {
 
     /**
